@@ -8,8 +8,35 @@
 
 namespace SleepCat\OpenCC;
 
+use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
 
-class ServiceProvider
+class ServiceProvider extends LaravelServiceProvider
 {
+    public function register()
+    {
+        // config
+        $source = realpath(__DIR__ . '/config.php');
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('opencc.php')], 'opencc');
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('opencc');
+        }
+        $this->mergeConfigFrom($source, 'opencc');
 
+        // class
+        $this->app->singleton(Command::class, function ($app) {
+            $options = $app['config']->get('opencc');
+
+            return new Command($options['binary']);
+        });
+
+        $this->app->singleton(OpenCC::class, function ($app) {
+            return new OpenCC($app[Command::class]);
+        });
+
+        // alias
+        $this->app->alias('opencc', OpenCC::class);
+        $this->app->alias('opencc.command', Command::class);
+    }
 }
