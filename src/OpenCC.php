@@ -17,7 +17,7 @@ class OpenCC
         $this->command = $command;
     }
 
-    public function transform($word,$type)
+    public function transform($word,$type='')
     {
         $tmpInput = tempnam(sys_get_temp_dir(), "OPENCC");
         $tmpOutput = tempnam(sys_get_temp_dir(), "OPENCC");

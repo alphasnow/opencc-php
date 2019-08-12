@@ -126,7 +126,8 @@ class Command
 
     public function run()
     {
-        $process = Process::fromShellCommandline($this->getCommand());
+        // $process = Process::fromShellCommandline($this->getCommand());
+        $process = new Process($this->getCommand());
 
         $output = '';
         $error = '';

@@ -28,11 +28,11 @@ class ServiceProvider extends LaravelServiceProvider
         $this->app->singleton('opencc.command', function ($app) {
             $options = $app['config']->get('opencc');
 
-            return new Command($options['binary']);
+            return new Command($options['binary_path']);
         });
 
         $this->app->singleton('opencc', function ($app) {
-            return new OpenCC($app['opencc']);
+            return new OpenCC($app['opencc.command']);
         });
 
         // alias
