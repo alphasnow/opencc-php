@@ -25,14 +25,14 @@ class ServiceProvider extends LaravelServiceProvider
         $this->mergeConfigFrom($source, 'opencc');
 
         // class
-        $this->app->singleton(Command::class, function ($app) {
+        $this->app->singleton('opencc.command', function ($app) {
             $options = $app['config']->get('opencc');
 
             return new Command($options['binary']);
         });
 
-        $this->app->singleton(OpenCC::class, function ($app) {
-            return new OpenCC($app[Command::class]);
+        $this->app->singleton('opencc', function ($app) {
+            return new OpenCC($app['opencc']);
         });
 
         // alias
