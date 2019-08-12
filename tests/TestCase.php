@@ -14,15 +14,17 @@ class TestCase extends BaseTestCase
 {
     protected $resources;
     protected $outputs;
-    protected $binary;
+    protected $binaryFile;
+    protected $configPath;
 
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    public function __construct($name = null, array $data = [],$dataName = '')
     {
         parent::__construct($name, $data, $dataName);
 
         $this->resources = RESOURCES_PATH;
         $this->outputs = OUTPUTS_PATH;
-        $this->binary = OPENCC_BINARY;
+        $this->binaryFile = OPENCC_BINARY;
+        $this->configPath = OPENCC_CONFIG;
     }
 
     public function setUp()

@@ -14,8 +14,8 @@ class CommandTest extends TestCase
 {
     public function provideTestCommandString()
     {
-        yield [$this->resources.'/traditional.txt', $this->outputs.'/simplified.txt', 'zht2zhs.ini'];
-        yield [$this->resources.'/simplified.txt', $this->outputs.'/traditional.txt', 'zhs2zht.ini'];
+        yield [$this->resources.'/traditional.txt', $this->outputs.'/simplified.txt', 't2s.json'];
+        yield [$this->resources.'/simplified.txt', $this->outputs.'/traditional.txt', 's2t.json'];
     }
 
     /**
@@ -23,22 +23,21 @@ class CommandTest extends TestCase
      */
     public function testCommandString($input, $output, $config)
     {
-        $command = new Command($this->binary);
+        $command = new Command($this->binaryFile);
 
-        $commandString = $command
+        $result = $command
             ->input($input)
             ->output($output)
             ->config($config)
             ->getCommand()
         ;
 
-        $expected = $this->binary.
+        $expected = $this->binaryFile.
             ' --input "'.$input.'"'.
             ' --output "'.$output.'"'.
             ' --config "'.$config.'"';
+        $expected = str_replace('\\', '/', $expected);
 
-//        $expected = str_replace('\\', '/', $expected);
-
-        $this->assertEquals($expected, $commandString);
+        $this->assertEquals($expected, $result);
     }
 }

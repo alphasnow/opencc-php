@@ -19,7 +19,7 @@
         </whitelist>
     </filter>
     <php>
-        <env name="OPENCC_BINARY" value="D:/Service/opencc-1.0.4/bin/opencc.exe"/>
-        <env name="OPENCC_CONFIG" value="D:/Service/opencc-1.0.4/share/opencc"/>
+        <env name="OPENCC_BINARY" value="/usr/bin/opencc"/>
+        <env name="OPENCC_CONFIG" value="/usr/share/opencc"/>
     </php>
 </phpunit>

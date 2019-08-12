@@ -16,16 +16,17 @@ use Throwable;
 
 class Command
 {
-    protected $binary;
+    protected $binaryFile;
+    protected $configPath;
     protected $inputFile;
     protected $outputFile;
     protected $configFile;
 
-    public function __construct($binary = null)
+    public function __construct($binaryFile = null,$configPath = null)
     {
-        $binary = self::findBinary($binary);
+        $binaryFile = self::findBinary($binaryFile);
 
-        $process = new Process([$binary, '--version']);
+        $process = new Process([$binaryFile, '--version']);
 
         try {
             $code = $process->run();
@@ -38,46 +39,54 @@ class Command
                 "OpenCC does not seem to work well, the test command resulted in an error.\n".
                 "Execution returned message: \"{$process->getExitCodeText()}\"\n".
                 "To solve this issue, please run this command and check your error messages to see if OpenCC was correctly installed:\n%s",
-                $binary.' -version'
+                $binaryFile.' -version'
             ));
         }
 
-        $this->binary = $binary;
+        $this->binaryFile = $this->cleanPath($binaryFile);
+
+        if($configPath){
+            if(!is_dir($configPath)){
+                throw new InvalidArgumentException(sprintf(
+                    "OpenCC config folder doesn't exist:\n%s",
+                    $configPath
+                ));
+            }
+            $this->configPath = $this->cleanPath($configPath);
+        }
     }
     
-    public static function create($binary = null)
+    public static function create($binaryFile = null)
     {
-        return new self($binary);
+        return new self($binaryFile);
     }
 
-    public static function findBinary($binary)
+    public static function findBinary($binaryFile)
     {
-        $binary = self::cleanPath($binary);
+        $binaryFile = self::cleanPath($binaryFile);
 
-        if (!$binary) {
-            $binary = (new ExecutableFinder())->find('opencc');
+        if (!$binaryFile) {
+            $binaryFile = (new ExecutableFinder())->find('opencc');
         }
 
-        // Add a proper directory separator at the end if path is not empty.
-        // If it's empty, then it's set in the global path.
-        if ($binary && !is_file($binary)) {
-            throw new OpenCCBinaryNotFoundException($binary);
+        if ($binaryFile && !is_file($binaryFile)) {
+            throw new OpenCCBinaryNotFoundException($binaryFile);
         }
 
-        if (!is_executable($binary)) {
+        if (!is_executable($binaryFile)) {
             throw new InvalidArgumentException(sprintf(
                 'The specified script (%s) is not executable.',
-                $binary
+                $binaryFile
             ));
         }
 
-        return $binary;
+        return $binaryFile;
     }
 
     private static function cleanPath($path)
     {
         $path = str_replace('\\', '/', $path);
-
+        $path = rtrim($path, '/');
         return $path;
     }
 
@@ -90,7 +99,7 @@ class Command
             ));
         }
 //        $this->inputFile = realpath($inputFile);
-        $this->inputFile = $inputFile;
+        $this->inputFile = $this->cleanPath($inputFile);
         return $this;
     }
     public function output($outputFile)
@@ -99,19 +108,19 @@ class Command
 //            touch($outputFile);
 //        }
 //        $this->outputFile = realpath($outputFile);
-        $this->outputFile = $outputFile;
+        $this->outputFile = $this->cleanPath($outputFile);
         return $this;
     }
     public function config($configFile)
     {
-        $this->configFile = $configFile;
+        $this->configFile = $this->cleanPath($configFile);
         return $this;
     }
 
-    public function getCommand(): string
+    public function getCommand()
     {
         $commands = [
-            $this->binary,
+            $this->binaryFile,
             '--input',
             '"'.$this->inputFile.'"',
             '--output',
@@ -119,15 +128,28 @@ class Command
         ];
         if($this->configFile){
             $commands[] = '--config';
-            $commands[] = '"'.$this->configFile.'"';
+            $commands[] = '"'.$this->getRealConfigFile().'"';
         }
         return implode(' ', $commands);
+    }
+
+    protected function getRealConfigFile()
+    {
+        $filePath = $this->cleanPath($this->configFile);
+        if(!$this->configPath){
+            return $filePath;
+        }
+        if(strpos('/','$'.$filePath)){
+            return $filePath;
+        }
+        return $this->configPath.'/'.$this->configFile;
     }
 
     public function run()
     {
         // $process = Process::fromShellCommandline($this->getCommand());
-        $process = new Process($this->getCommand());
+        $commands = $this->getCommand();
+        $process = new Process($commands);
 
         $output = '';
         $error = '';
@@ -139,6 +161,8 @@ class Command
                 $output .= $buffer;
             }
         });
+
+        $this->inputFile = $this->outputFile = $this->configFile = null;
 
         return new CommandResponse($process, $code, $output, $error);
     }

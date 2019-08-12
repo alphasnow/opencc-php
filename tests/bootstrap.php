@@ -12,7 +12,7 @@ define('OUTPUTS_PATH',RESOURCES_PATH.'/outputs');
 $possibleBinaries = [
     '/usr/bin/opencc',
     '/usr/local/bin/opencc',
-    getenv('OPENCC')?:'', // Fall back again to PATH
+    getenv('OPENCC_BINARY')?:'', // Fall back again to PATH
 ];
 foreach ($possibleBinaries as $possibleBinary){
     if($possibleBinary && is_file($possibleBinary) && is_executable($possibleBinary)){
@@ -32,3 +32,12 @@ if(!defined('OPENCC_BINARY')){
         'in the global PATH variable, or that it is accessible in /usr/bin'
     );
 }
+
+$configPath = getenv('OPENCC_CONFIG')?:'';
+if($configPath && !is_dir($configPath)){
+    throw new RuntimeException(
+        "OpenCC config folder doesn't exist:\n%s",
+        $configPath
+    );
+}
+define('OPENCC_CONFIG',$configPath);
