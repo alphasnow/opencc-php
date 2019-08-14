@@ -17,16 +17,23 @@ class OpenCC
         $this->command = $command;
     }
 
-    public function transform($word,$type='')
+    public function transform($word,$type='s2t.json')
     {
         $tmpInput = tempnam(sys_get_temp_dir(), "OPENCC");
         $tmpOutput = tempnam(sys_get_temp_dir(), "OPENCC");
-        $config = $this->typeToConfig($type);
         file_put_contents($tmpInput,$word);
-        $response = $this->command->input($tmpInput)->output($tmpOutput)->config($config)->run();
+
+        $this->command->input($tmpInput)->output($tmpOutput);
+        if($config){
+            $config = $this->typeToConfig($type);
+            $this->command->config($config);
+        }
+        $response = $this->command->run();
+        
         $outputData = file_get_contents($tmpOutput);
         unlink($tmpOutput);
         unlink($tmpInput);
+
         return $outputData;
     }
     public function typeToConfig($type)
