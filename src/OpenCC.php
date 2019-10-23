@@ -12,32 +12,28 @@ namespace SleepCat\OpenCC;
 class OpenCC
 {
     protected $command;
+
     public function __construct(Command $command)
     {
         $this->command = $command;
     }
 
-    public function transform($word,$type='s2t.json')
+    public function transform($word, $type = 's2t.json')
     {
         $tmpInput = tempnam(sys_get_temp_dir(), "OPENCC");
         $tmpOutput = tempnam(sys_get_temp_dir(), "OPENCC");
-        file_put_contents($tmpInput,$word);
+        file_put_contents($tmpInput, $word);
 
-        $this->command->input($tmpInput)->output($tmpOutput);
-        if($config){
-            $config = $this->typeToConfig($type);
-            $this->command->config($config);
-        }
-        $response = $this->command->run();
-        
+        $this->command->input($tmpInput)
+            ->output($tmpOutput)
+            ->config($type)
+            ->run();
+
         $outputData = file_get_contents($tmpOutput);
         unlink($tmpOutput);
         unlink($tmpInput);
 
         return $outputData;
     }
-    public function typeToConfig($type)
-    {
-        return $type;
-    }
+
 }

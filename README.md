@@ -9,7 +9,12 @@
 ### opencc-php
 使用`Composer`安装
 ```shell
-composer require sleep-cat/opencc-php
+# php^7.0 laravel^5.5
+composer require sleep-cat/opencc-php:^3.0
+# php^7.1 laravel^5.8
+composer require sleep-cat/opencc-php:^3.1
+# php^7.2 laravel^6.0
+composer require sleep-cat/opencc-php:^3.2
 ```
 
 ## 配置与实例
