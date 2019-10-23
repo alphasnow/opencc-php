@@ -33,7 +33,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->singleton('opencc.command', function ($app) {
             $options = $app['config']->get('opencc');
 
-            return new Command($options['binary_path']);
+            return new Command($options['binary_path'],$options['config_path']);
         });
 
         $this->app->singleton('opencc', function ($app) {
