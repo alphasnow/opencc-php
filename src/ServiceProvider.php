@@ -8,21 +8,26 @@
 
 namespace SleepCat\OpenCC;
 
-use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 
-class ServiceProvider extends LaravelServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            if ($this->app instanceof LumenApplication) {
+                $this->app->configure('excel');
+            } else {
+                $this->publishes([
+                    $this->getConfigFile() => config_path('opencc.php'),
+                ], 'config');
+            }
+        }
+    }
     public function register()
     {
-        // config
-        $source = realpath(__DIR__ . '/config.php');
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('opencc.php')], 'opencc');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('opencc');
-        }
-        $this->mergeConfigFrom($source, 'opencc');
+        $this->mergeConfigFrom($this->getConfigFile(), 'opencc');
 
         // class
         $this->app->singleton('opencc.command', function ($app) {
@@ -38,5 +43,10 @@ class ServiceProvider extends LaravelServiceProvider
         // alias
         $this->app->alias('opencc', OpenCC::class);
         $this->app->alias('opencc.command', Command::class);
+    }
+
+    private function getConfigFile(): string
+    {
+        return realpath(__DIR__ . '/config.php');
     }
 }
