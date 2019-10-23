@@ -60,7 +60,7 @@ composer require sleep-cat/opencc-php:^3.2
 ## 使用
 ```php
 // laravel应用可用外观
-$result = OpenCC::transform('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。','t2s.json')
+$result = \OpenCC::transform('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。','t2s.json');
 
 // 其他应用使用实例
 $result = $opencc->transform('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。','t2s.json');

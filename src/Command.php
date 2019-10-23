@@ -55,7 +55,7 @@ class Command
             $this->configPath = $this->cleanPath($configPath);
         }
     }
-    
+
     public static function create($binaryFile = null)
     {
         return new self($binaryFile);
@@ -142,7 +142,7 @@ class Command
         if(strpos('/','$'.$filePath)){
             return $filePath;
         }
-        return $this->configPath.'/'.$this->configFile;
+        return rtrim($this->configPath,'/').'/'.$this->configFile;
     }
 
     public function run()
