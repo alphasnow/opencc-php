@@ -4,9 +4,9 @@
 
 ## 安装
 ### opencc
-* ubuntu `apt install opencc`
-* CentOs `yum install opencc`
-[OpenCC](https://github.com/BYVoid/OpenCC)
+* ubuntu `apt install opencc`  
+* CentOs `yum install opencc`  
+* [编译安装OpenCC](https://github.com/BYVoid/OpenCC)  
 
 ### opencc-php
 使用`Composer`安装
