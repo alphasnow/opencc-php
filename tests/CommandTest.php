@@ -5,17 +5,17 @@
  * Date: 2019/8/9
  * Time: 13:58
  */
-namespace SleepCat\OpenCC\Test;
+namespace AlaphaSnow\OpenCC\Test;
 
 
-use SleepCat\OpenCC\Command;
+use AlaphaSnow\OpenCC\Command;
 
 class CommandTest extends TestCase
 {
     public function provideTestCommandString()
     {
-        yield [$this->resources.'/traditional.txt', $this->outputs.'/simplified.txt', 't2s.json'];
-        yield [$this->resources.'/simplified.txt', $this->outputs.'/traditional.txt', 's2t.json'];
+        yield [$this->files.'/traditional.txt', $this->outputs.'/simplified.txt', 't2s.json'];
+        yield [$this->files.'/simplified.txt', $this->outputs.'/traditional.txt', 's2t.json'];
     }
 
     /**

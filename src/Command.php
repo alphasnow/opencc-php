@@ -6,13 +6,13 @@
  * Time: 13:41
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 use RuntimeException;
 use InvalidArgumentException;
-use Throwable;
+use Exception;
 
 class Command
 {
@@ -30,7 +30,7 @@ class Command
 
         try {
             $code = $process->run();
-        } catch (Throwable $e) {
+        } catch (Exception $e) {
             throw new RuntimeException('Could not check OpenCC version', 1, $e);
         }
 
@@ -70,7 +70,7 @@ class Command
         }
 
         if ($binaryFile && !is_file($binaryFile)) {
-            throw new OpenCCBinaryNotFoundException($binaryFile);
+            throw new BinaryNotFoundException($binaryFile);
         }
 
         if (!is_executable($binaryFile)) {
@@ -98,16 +98,11 @@ class Command
                 $inputFile
             ));
         }
-//        $this->inputFile = realpath($inputFile);
         $this->inputFile = $this->cleanPath($inputFile);
         return $this;
     }
     public function output($outputFile)
     {
-//        if(!is_file($outputFile)){
-//            touch($outputFile);
-//        }
-//        $this->outputFile = realpath($outputFile);
         $this->outputFile = $this->cleanPath($outputFile);
         return $this;
     }
@@ -147,7 +142,6 @@ class Command
 
     public function run()
     {
-        // $process = Process::fromShellCommandline($this->getCommand());
         $commands = $this->getCommand();
         $process = new Process($commands);
 

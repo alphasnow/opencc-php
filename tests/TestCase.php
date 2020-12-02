@@ -6,13 +6,13 @@
  * Time: 16:04
  */
 
-namespace SleepCat\OpenCC\Test;
+namespace AlaphaSnow\OpenCC\Test;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    protected $resources;
+    protected $files;
     protected $outputs;
     protected $binaryFile;
     protected $configPath;
@@ -21,7 +21,7 @@ class TestCase extends BaseTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->resources = RESOURCES_PATH;
+        $this->files = FILES_PATH;
         $this->outputs = OUTPUTS_PATH;
         $this->binaryFile = OPENCC_BINARY;
         $this->configPath = OPENCC_CONFIG;

@@ -6,7 +6,7 @@
  * Time: 14:50
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
 use Symfony\Component\Process\Process;
 

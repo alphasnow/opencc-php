@@ -1,38 +1,38 @@
 {
-    "name": "sleep-cat/opencc-php",
+    "name": "alaphasnow/opencc-php",
     "description": "OpenCC made with PHP",
     "keywords": ["OpenCC", "PHP"],
     "license": "MIT",
     "authors": [
         {
-            "name": "sleep-cat",
+            "name": "alaphasnow",
             "email": "wind91@foxmail.com"
         }
     ],
     "require": {
-        "php": "^7.0",
-        "symfony/process": "^3.3"
+        "php": "^7.2.5",
+        "symfony/process": "^4.3.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^8.5.8"
     },
     "autoload": {
         "psr-4": {
-            "SleepCat\\OpenCC\\": "src/"
+            "AlaphaSnow\\OpenCC\\": "src/"
         }
     },
     "autoload-dev": {
       "psr-4": {
-          "SleepCat\\OpenCC\\Test\\": "tests/"
+          "AlaphaSnow\\OpenCC\\Test\\": "tests/"
       }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "SleepCat\\OpenCC\\ServiceProvider"
+                "AlaphaSnow\\OpenCC\\ServiceProvider"
             ],
             "aliases": {
-                "OpenCC": "SleepCat\\OpenCC\\Facade"
+                "OpenCC": "Facade"
             }
         }
     }

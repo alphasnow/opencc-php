@@ -6,8 +6,8 @@ if (!file_exists($file)) {
 }
 $autoload = require_once $file;
 
-define('RESOURCES_PATH',realpath(__DIR__ . '/../resources'));
-define('OUTPUTS_PATH',RESOURCES_PATH.'/outputs');
+define('FILES_PATH',realpath(__DIR__ . '/files'));
+define('OUTPUTS_PATH',FILES_PATH.'/outputs');
 
 $possibleBinaries = [
     '/usr/bin/opencc',
@@ -17,7 +17,7 @@ $possibleBinaries = [
 foreach ($possibleBinaries as $possibleBinary){
     if($possibleBinary && is_file($possibleBinary) && is_executable($possibleBinary)){
         try{
-            \SleepCat\OpenCC\Command::create($possibleBinary);
+            \AlaphaSnow\OpenCC\Command::create($possibleBinary);
             define('OPENCC_BINARY',$possibleBinary);
             break;
         }catch (Exception $e){

@@ -6,11 +6,11 @@
  * Time: 17:32
  */
 
-namespace SleepCat\OpenCC\Test;
+namespace AlaphaSnow\OpenCC\Test;
 
 
-use SleepCat\OpenCC\Command;
-use SleepCat\OpenCC\OpenCC;
+use AlaphaSnow\OpenCC\Command;
+use AlaphaSnow\OpenCC\OpenCC;
 
 class OpenCCTest extends TestCase
 {

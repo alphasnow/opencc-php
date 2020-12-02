@@ -11,12 +11,7 @@
 ### opencc-php
 使用`Composer`安装
 ```shell
-# php^7.0 laravel^5.5
-composer require sleep-cat/opencc-php:^3.0
-# php^7.1 laravel^5.8
-composer require sleep-cat/opencc-php:^3.1
-# php^7.2 laravel^6.0
-composer require sleep-cat/opencc-php:^3.2
+composer require alaphasnow/opencc-php
 ```
 
 ## 配置与实例
@@ -26,17 +21,17 @@ composer require sleep-cat/opencc-php:^3.2
     ```php
     'providers' => [
         // ...
-        SleepCat\OpenCC\ServiceProvider::class,
+        AlaphaSnow\OpenCC\ServiceProvider::class,
     ],
     'aliases' => [
         // ...
-        'OpenCC' => SleepCat\OpenCC\Facade::class,
+        'OpenCC' => AlaphaSnow\OpenCC\Facade::class,
     ],
     ```
 2. 创建配置文件：
 
     ```shell
-    php artisan vendor:publish --provider="SleepCat\OpenCC\ServiceProvider"
+    php artisan vendor:publish --provider="AlaphaSnow\OpenCC\ServiceProvider"
     ```
     
 3. 修改应用根目录下的 `config/opencc.php` 中对应的参数即可。
@@ -53,8 +48,8 @@ composer require sleep-cat/opencc-php:^3.2
 ### 其他应用
 1. 创建OpenCC实例
     ```php
-    use SleepCat\OpenCC\Command;
-    use SleepCat\OpenCC\OpenCC;
+    use AlaphaSnow\OpenCC\Command;
+    use AlaphaSnow\OpenCC\OpenCC;
     $command = new Command('/usr/bin/opencc','/usr/share/opencc');
     $opencc = new OpenCC($command);
     ```

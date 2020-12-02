@@ -6,7 +6,7 @@
  * Time: 13:41
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         if ($this->app->runningInConsole()) {
             if ($this->app instanceof LumenApplication) {
-                $this->app->configure('excel');
+                $this->app->configure('opencc');
             } else {
                 $this->publishes([
                     $this->getConfigFile() => config_path('opencc.php'),
@@ -48,5 +48,10 @@ class ServiceProvider extends BaseServiceProvider
     private function getConfigFile(): string
     {
         return realpath(__DIR__ . '/config.php');
+    }
+
+    public function provides()
+    {
+        return [OpenCC::class,Command::class];
     }
 }

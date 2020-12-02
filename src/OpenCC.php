@@ -6,7 +6,7 @@
  * Time: 17:24
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
 
 class OpenCC
@@ -18,16 +18,24 @@ class OpenCC
         $this->command = $command;
     }
 
-    public function transform($word, $type = 's2t.json')
+    public function config($config)
     {
+        $this->command->config($config);
+        return $this;
+    }
+
+    public function convert($word, $config = null)
+    {
+        if(!is_null($config)){
+            $this->command->config($config);
+        }
+
         $tmpInput = tempnam(sys_get_temp_dir(), "OPENCC");
         $tmpOutput = tempnam(sys_get_temp_dir(), "OPENCC");
         file_put_contents($tmpInput, $word);
+        $this->command->input($tmpInput)->output($tmpOutput);
 
-        $this->command->input($tmpInput)
-            ->output($tmpOutput)
-            ->config($type)
-            ->run();
+        $this->command->run();
 
         $outputData = file_get_contents($tmpOutput);
         unlink($tmpOutput);

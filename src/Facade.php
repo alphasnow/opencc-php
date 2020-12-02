@@ -6,10 +6,14 @@
  * Time: 13:41
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
+/**
+ * Class OpenCCFacade
+ * @package AlaphaSnow\OpenCC
+ */
 class Facade extends LaravelFacade
 {
     protected static function getFacadeAccessor()

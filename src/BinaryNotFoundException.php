@@ -6,10 +6,11 @@
  * Time: 13:54
  */
 
-namespace SleepCat\OpenCC;
+namespace AlaphaSnow\OpenCC;
 
+use RuntimeException;
 
-class OpenCCBinaryNotFoundException extends \Exception
+class BinaryNotFoundException extends RuntimeException
 {
 
 }
