@@ -10,10 +10,6 @@ namespace AlphaSnow\OpenCC;
 
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
-/**
- * Class OpenCCFacade
- * @package AlphaSnow\OpenCC
- */
 class Facade extends LaravelFacade
 {
     /**
@@ -21,6 +17,6 @@ class Facade extends LaravelFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'opencc';
+        return OpenCC::class;
     }
 }

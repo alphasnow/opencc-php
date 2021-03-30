@@ -32,6 +32,13 @@ class CommandResponse
      */
     private $error;
 
+    /**
+     * CommandResponse constructor.
+     * @param Process $process
+     * @param int $code
+     * @param string $output
+     * @param string $error
+     */
     public function __construct(Process $process, int $code, string $output, string $error)
     {
         $this->code = $code;
@@ -40,31 +47,49 @@ class CommandResponse
         $this->process = $process;
     }
 
+    /**
+     * @return bool
+     */
     public function isSuccessful(): bool
     {
         return 0 === $this->code;
     }
 
+    /**
+     * @return bool
+     */
     public function hasFailed(): bool
     {
         return 0 !== $this->code;
     }
 
+    /**
+     * @return Process
+     */
     public function getProcess(): Process
     {
         return $this->process;
     }
 
+    /**
+     * @return int
+     */
     public function getCode(): int
     {
         return $this->code;
     }
 
+    /**
+     * @return string
+     */
     public function getOutput(): string
     {
         return $this->output;
     }
 
+    /**
+     * @return string
+     */
     public function getError(): string
     {
         return $this->error;

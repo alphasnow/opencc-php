@@ -174,7 +174,7 @@ class Command
      * @param string $path
      * @return string
      */
-    private static function cleanPath($path)
+    public function cleanPath($path)
     {
         $path = str_replace('\\', '/', $path);
         $path = rtrim($path, '/');
@@ -242,14 +242,24 @@ class Command
      */
     protected function getRealConfigFile()
     {
-        $filePath = $this->cleanPath($this->configFile);
-        if (!$this->configPath) {
-            return $filePath;
+        $configFile = $this->configFile;
+
+        // check root path
+        if (strpos('$' . $configFile, '/')) {
+            return $configFile;
         }
-        if (strpos('/', '$' . $filePath)) {
-            return $filePath;
+
+        // check suffix
+        if (!strrpos($configFile, '.json')) {
+            $configFile .= '.json';
         }
-        return rtrim($this->configPath, '/') . '/' . $this->configFile;
+
+        // check config path
+        if ($this->configPath) {
+            $configFile = $this->configPath . '/' . $configFile;
+        }
+
+        return $configFile;
     }
 
     /**

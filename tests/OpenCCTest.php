@@ -36,7 +36,7 @@ class OpenCCTest extends TestCase
      */
     public function testTraditional($openCC)
     {
-        $result = $openCC->convert('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。', 't2s.json');
+        $result = $openCC->convert('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。', 't2s');
         $this->assertSame('天气乍凉人寂寞，光阴须得酒消磨。且来花里听笙歌。', $result);
     }
 }
