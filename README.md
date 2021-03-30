@@ -32,17 +32,17 @@ composer require alaphasnow/opencc-php
         ]
     ];
     ```
-2. 发布配置文件：
+2. 发布配置文件
 
-    ```shell
+    ```bash
     php artisan vendor:publish --provider="AlaphaSnow\OpenCC\ServiceProvider"
     ```
     
-3. 修改应用根目录下的 `config/opencc.php` 中对应的参数即可。
+3. 修改配置文件 `config/opencc.php`
     ```php
     return [
-        'binary_path'=>'/usr/bin/opencc', // 执行文件的路径,默认:/usr/bin/opencc
-        'config_path'=>'/usr/share/opencc',// 配置文件的路径,默认:/usr/share/opencc,Ubuntu:/usr/lib/x86_64-linux-gnu/opencc
+        'binary_path'=>'/usr/bin/opencc',  // 执行文件的路径,默认:/usr/bin/opencc
+        'config_path'=>'/usr/share/opencc',// 预设配置文件夹的路径,默认:/usr/share/opencc
     ];
     ```
 
