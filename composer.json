@@ -1,7 +1,11 @@
 {
     "name": "alaphasnow/opencc-php",
     "description": "OpenCC made with PHP",
-    "keywords": ["opencc", "php", "laravel"],
+    "keywords": [
+        "opencc",
+        "php",
+        "laravel"
+    ],
     "homepage": "https://github.com/alphasnow/opencc",
     "license": "MIT",
     "authors": [
@@ -12,7 +16,7 @@
     ],
     "require": {
         "php": ">=7.0",
-        "symfony/process": "^3.3|^4.3|^5.0",
+        "symfony/process": "^3.0 || ^4.0 || ^5.0",
         "neutron/temporary-filesystem": "^3.0"
     },
     "require-dev": {
@@ -28,9 +32,9 @@
         }
     },
     "autoload-dev": {
-      "psr-4": {
-          "AlaphaSnow\\OpenCC\\Tests\\": "tests/"
-      }
+        "psr-4": {
+            "AlaphaSnow\\OpenCC\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {
