@@ -6,10 +6,10 @@
  * Time: 16:04
  */
 
-namespace AlaphaSnow\OpenCC\Tests;
+namespace AlphaSnow\OpenCC\Tests;
 
-use AlaphaSnow\OpenCC\Facade;
-use AlaphaSnow\OpenCC\ServiceProvider;
+use AlphaSnow\OpenCC\Facade;
+use AlphaSnow\OpenCC\ServiceProvider;
 use Orchestra\Testbench\TestCase  as BaseTestCase;
 
 class TestCase extends BaseTestCase

@@ -6,7 +6,7 @@
  * Time: 13:54
  */
 
-namespace AlaphaSnow\OpenCC;
+namespace AlphaSnow\OpenCC;
 
 use RuntimeException;
 

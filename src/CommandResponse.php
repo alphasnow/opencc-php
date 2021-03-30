@@ -6,7 +6,7 @@
  * Time: 14:50
  */
 
-namespace AlaphaSnow\OpenCC;
+namespace AlphaSnow\OpenCC;
 
 use Symfony\Component\Process\Process;
 

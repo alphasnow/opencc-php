@@ -6,13 +6,13 @@
  * Time: 13:41
  */
 
-namespace AlaphaSnow\OpenCC;
+namespace AlphaSnow\OpenCC;
 
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
 /**
  * Class OpenCCFacade
- * @package AlaphaSnow\OpenCC
+ * @package AlphaSnow\OpenCC
  */
 class Facade extends LaravelFacade
 {

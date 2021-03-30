@@ -6,7 +6,7 @@
  * Time: 13:41
  */
 
-namespace AlaphaSnow\OpenCC;
+namespace AlphaSnow\OpenCC;
 
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;

@@ -1,5 +1,5 @@
 {
-    "name": "alaphasnow/opencc-php",
+    "name": "alphasnow/opencc-php",
     "description": "OpenCC made with PHP",
     "keywords": [
         "opencc",
@@ -10,7 +10,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "alaphasnow",
+            "name": "alphasnow",
             "email": "wind91@foxmail.com"
         }
     ],
@@ -28,18 +28,18 @@
     },
     "autoload": {
         "psr-4": {
-            "AlaphaSnow\\OpenCC\\": "src/"
+            "AlphaSnow\\OpenCC\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AlaphaSnow\\OpenCC\\Tests\\": "tests/"
+            "AlphaSnow\\OpenCC\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AlaphaSnow\\OpenCC\\ServiceProvider"
+                "AlphaSnow\\OpenCC\\ServiceProvider"
             ],
             "aliases": {
                 "OpenCC": "AlphaSnow\\OpenCC\\Facade"

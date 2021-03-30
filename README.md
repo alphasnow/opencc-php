@@ -1,9 +1,9 @@
 # opencc-php
 ## 介绍
-[![Latest Stable Version](https://poser.pugx.org/alaphasnow/opencc-php/v/stable)](https://packagist.org/packages/alaphasnow/opencc-php)
-[![Total Downloads](https://poser.pugx.org/alaphasnow/opencc-php/downloads)](https://packagist.org/packages/alaphasnow/opencc-php)
-[![License](https://poser.pugx.org/alaphasnow/opencc-php/license)](https://packagist.org/packages/alaphasnow/opencc-php)
-[![Latest Unstable Version](https://poser.pugx.org/alaphasnow/opencc-php/v/unstable)](https://packagist.org/packages/alaphasnow/opencc-php)
+[![Latest Stable Version](https://poser.pugx.org/alphasnow/opencc-php/v/stable)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Total Downloads](https://poser.pugx.org/alphasnow/opencc-php/downloads)](https://packagist.org/packages/alphasnow/opencc-php)
+[![License](https://poser.pugx.org/alphasnow/opencc-php/license)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Latest Unstable Version](https://poser.pugx.org/alphasnow/opencc-php/v/unstable)](https://packagist.org/packages/alphasnow/opencc-php)
 
 中文简繁转换开源项目，支持词汇级别的转换、异体字转换和地区习惯用词转换（中国大陆、臺湾、香港）。  
 
@@ -19,7 +19,7 @@
 #### opencc-php
 使用`Composer`安装
 ```bash
-composer require alaphasnow/opencc-php
+composer require alphasnow/opencc-php
 ```
 
 ## 应用配置
@@ -29,18 +29,18 @@ composer require alaphasnow/opencc-php
     [
         'providers' => [
             // ...
-            AlaphaSnow\OpenCC\ServiceProvider::class,
+            AlphaSnow\OpenCC\ServiceProvider::class,
         ],
         'aliases' => [
             // ...
-            'OpenCC' => AlaphaSnow\OpenCC\Facade::class,
+            'OpenCC' => AlphaSnow\OpenCC\Facade::class,
         ]
     ];
     ```
 2. 发布配置文件
 
     ```bash
-    php artisan vendor:publish --provider="AlaphaSnow\OpenCC\ServiceProvider"
+    php artisan vendor:publish --provider="AlphaSnow\OpenCC\ServiceProvider"
     ```
     
 3. 修改配置文件 `config/opencc.php`
@@ -70,8 +70,8 @@ print_r($result);
 
 #### 其他应用
 ```php
-use AlaphaSnow\OpenCC\Command;
-use AlaphaSnow\OpenCC\OpenCC;
+use AlphaSnow\OpenCC\Command;
+use AlphaSnow\OpenCC\OpenCC;
 
 $command = new Command('/usr/bin/opencc','/usr/share/opencc');
 $opencc = new OpenCC($command);

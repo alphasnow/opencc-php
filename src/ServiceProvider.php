@@ -6,7 +6,7 @@
  * Time: 13:41
  */
 
-namespace AlaphaSnow\OpenCC;
+namespace AlphaSnow\OpenCC;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 

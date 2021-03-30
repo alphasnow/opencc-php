@@ -6,10 +6,10 @@
  * Time: 17:32
  */
 
-namespace AlaphaSnow\OpenCC\Tests;
+namespace AlphaSnow\OpenCC\Tests;
 
-use AlaphaSnow\OpenCC\Command;
-use AlaphaSnow\OpenCC\OpenCC;
+use AlphaSnow\OpenCC\Command;
+use AlphaSnow\OpenCC\OpenCC;
 
 class OpenCCTest extends TestCase
 {
