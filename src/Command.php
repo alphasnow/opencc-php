@@ -43,7 +43,7 @@ class Command
     protected $processConfig = [
         'cwd' => null,
         'env' => null,
-        'timeout' => 60,
+        'timeout' => 10,
     ];
 
     /**

@@ -26,7 +26,9 @@ class ServiceProvider extends BaseServiceProvider
         // class
         $this->app->singleton(Command::class, function ($app) {
             $config = $app->get('config')->get('opencc');
-            return new Command($config['binary_path'], $config['config_path']);
+            $command = new Command($config['binary_path'], $config['config_path']);
+            $command->setProcessConfig($config['process']);
+            return $command;
         });
 
         $this->app->singleton(OpenCC::class, function ($app) {

@@ -1,5 +1,10 @@
 # opencc-php
 ## 介绍
+[![Latest Stable Version](https://poser.pugx.org/alphasnow/opencc-php/v/stable)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Total Downloads](https://poser.pugx.org/alphasnow/opencc-php/downloads)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Latest Unstable Version](https://poser.pugx.org/alphasnow/opencc-php/v/unstable)](https://packagist.org/packages/alphasnow/opencc-php)
+[![License](https://poser.pugx.org/alphasnow/opencc-php/license)](https://packagist.org/packages/alphasnow/opencc-php)
+
 中文简繁转换开源项目，支持词汇级别的转换、异体字转换和地区习惯用词转换（中国大陆、臺湾、香港）。  
 
 ## 安装
@@ -41,10 +46,17 @@ composer require alaphasnow/opencc-php
 3. 修改配置文件 `config/opencc.php`
     ```php
     return [
-        'binary_path'=>'/usr/bin/opencc',  // 执行文件的路径,默认:/usr/bin/opencc
-        'config_path'=>'/usr/share/opencc',// 预设配置文件夹的路径,默认:/usr/share/opencc
+        // 执行文件的路径,默认:/usr/bin/opencc
+        'binary_path'=> env('OPENCC_BINARY', '/usr/bin/opencc'),
+        // 预设配置文件夹的路径,默认:/usr/share/opencc
+        'config_path'=> env('OPENCC_CONFIG', '/usr/share/opencc'),
     ];
     ```
+   或配置文件 `.env`
+   ```
+   OPENCC_BINARY=/usr/bin/opencc
+   OPENCC_CONFIG=/usr/share/opencc
+   ```
 
 ## 快速使用
 #### Laravel 应用
