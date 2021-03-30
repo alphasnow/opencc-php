@@ -6,9 +6,11 @@
  * Time: 16:04
  */
 
-namespace AlaphaSnow\OpenCC\Test;
+namespace AlaphaSnow\OpenCC\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use AlaphaSnow\OpenCC\Facade;
+use AlaphaSnow\OpenCC\ServiceProvider;
+use Orchestra\Testbench\TestCase  as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
@@ -27,8 +29,21 @@ class TestCase extends BaseTestCase
         $this->configPath = OPENCC_CONFIG;
     }
 
+    protected function getPackageProviders($app)
+    {
+        return [ServiceProvider::class];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return ['OpenCC' => Facade::class];
+    }
+
     public function setUp()
     {
+        parent::setUp();
+
+        // clear outputs
         foreach (scandir($this->outputs, SCANDIR_SORT_NONE) as $file) {
             if ('.' !== $file && '..' !== $file && '.gitkeep' !== $file) {
                 unlink($this->outputs.'/'.$file);

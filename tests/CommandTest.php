@@ -5,7 +5,7 @@
  * Date: 2019/8/9
  * Time: 13:58
  */
-namespace AlaphaSnow\OpenCC\Test;
+namespace AlaphaSnow\OpenCC\Tests;
 
 
 use AlaphaSnow\OpenCC\Command;

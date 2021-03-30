@@ -14,11 +14,17 @@
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory suffix="ServiceProvider.php">src/</directory>
+                <directory suffix="Exception.php">src/</directory>
+            </exclude>
         </whitelist>
     </filter>
     <php>
+        <const name="PHPUNIT_RUNNING" value="true" />
+        <env name="APP_ENV" value="testing"/>
         <env name="OPENCC_BINARY" value="/usr/bin/opencc"/>
         <env name="OPENCC_CONFIG" value="/usr/share/opencc"/>
     </php>

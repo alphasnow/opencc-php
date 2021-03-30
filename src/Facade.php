@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  */
 class Facade extends LaravelFacade
 {
+    /**
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'opencc';

@@ -9,40 +9,33 @@
 namespace AlaphaSnow\OpenCC;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
 
 class ServiceProvider extends BaseServiceProvider
 {
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            if ($this->app instanceof LumenApplication) {
-                $this->app->configure('opencc');
-            } else {
-                $this->publishes([
-                    $this->getConfigFile() => config_path('opencc.php'),
-                ], 'config');
-            }
+            $this->publishes([
+                $this->getConfigFile() => config_path('opencc.php'),
+            ], 'config');
         }
+        $this->mergeConfigFrom($this->getConfigFile(), 'opencc');
     }
     public function register()
     {
-        $this->mergeConfigFrom($this->getConfigFile(), 'opencc');
-
         // class
-        $this->app->singleton('opencc.command', function ($app) {
-            $options = $app['config']->get('opencc');
-
-            return new Command($options['binary_path'],$options['config_path']);
+        $this->app->singleton(Command::class, function ($app) {
+            $config = $app->get('config')->get('opencc');
+            return new Command($config['binary_path'],$config['config_path']);
         });
 
-        $this->app->singleton('opencc', function ($app) {
-            return new OpenCC($app['opencc.command']);
+        $this->app->singleton(OpenCC::class, function ($app) {
+            return new OpenCC($app->get('opencc.command'));
         });
 
         // alias
-        $this->app->alias('opencc', OpenCC::class);
-        $this->app->alias('opencc.command', Command::class);
+        $this->app->alias(OpenCC::class,'opencc');
+        $this->app->alias(Command::class,'opencc.command');
     }
 
     private function getConfigFile(): string
@@ -52,6 +45,9 @@ class ServiceProvider extends BaseServiceProvider
 
     public function provides()
     {
-        return [OpenCC::class,Command::class];
+        return [
+            OpenCC::class,
+            Command::class
+        ];
     }
 }
