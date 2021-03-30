@@ -12,7 +12,8 @@ return [
     */
 
     'binary_path' => env('OPENCC_BINARY', '/usr/bin/opencc'),
-    'config_path' => env('OPENCC_CONFIG', '/usr/share/opencc'),
+    'config_path' => env('OPENCC_CONFIG', ''),
+    'config_extension' => env('OPENCC_CONFIG_EXTENSION', '.json'), // .json/.ini
 
     'process' => [
         'cwd' => null,

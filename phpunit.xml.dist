@@ -26,6 +26,6 @@
         <const name="PHPUNIT_RUNNING" value="true" />
         <env name="APP_ENV" value="testing"/>
         <env name="OPENCC_BINARY" value="/usr/bin/opencc"/>
-        <env name="OPENCC_CONFIG" value="/usr/share/opencc"/>
+        <env name="OPENCC_CONFIG" value=""/>
     </php>
 </phpunit>
