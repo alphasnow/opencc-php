@@ -5,8 +5,8 @@
  * Date: 2019/8/9
  * Time: 13:58
  */
-namespace AlaphaSnow\OpenCC\Tests;
 
+namespace AlaphaSnow\OpenCC\Tests;
 
 use AlaphaSnow\OpenCC\Command;
 
@@ -23,7 +23,7 @@ class CommandTest extends TestCase
      */
     public function testCommandString($input, $output, $config)
     {
-        $command = new Command($this->binaryFile);
+        $command = new Command($this->binaryFile, $this->configPath);
 
         $result = $command
             ->input($input)
@@ -35,7 +35,7 @@ class CommandTest extends TestCase
         $expected = $this->binaryFile.
             ' --input "'.$input.'"'.
             ' --output "'.$output.'"'.
-            ' --config "'.$config.'"';
+            ' --config "'.$this->configPath.'/'.$config.'"';
         $expected = str_replace('\\', '/', $expected);
 
         $this->assertEquals($expected, $result);

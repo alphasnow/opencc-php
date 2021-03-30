@@ -6,26 +6,26 @@ if (!file_exists($file)) {
 }
 $autoload = require_once $file;
 
-define('FILES_PATH',realpath(__DIR__ . '/files'));
-define('OUTPUTS_PATH',FILES_PATH.'/outputs');
+define('FILES_PATH', realpath(__DIR__ . '/files'));
+define('OUTPUTS_PATH', FILES_PATH.'/outputs');
 
 $possibleBinaries = [
     '/usr/bin/opencc',
     '/usr/local/bin/opencc',
-    getenv('OPENCC_BINARY')?:'', // Fall back again to PATH
+    getenv('OPENCC_BINARY') ?: '', // Fall back again to PATH
 ];
-foreach ($possibleBinaries as $possibleBinary){
-    if($possibleBinary && is_file($possibleBinary) && is_executable($possibleBinary)){
-        try{
+foreach ($possibleBinaries as $possibleBinary) {
+    if ($possibleBinary && is_file($possibleBinary) && is_executable($possibleBinary)) {
+        try {
             \AlaphaSnow\OpenCC\Command::create($possibleBinary);
-            define('OPENCC_BINARY',$possibleBinary);
+            define('OPENCC_BINARY', $possibleBinary);
             break;
-        }catch (Exception $e){
+        } catch (Exception $e) {
         }
     }
 }
 
-if(!defined('OPENCC_BINARY')){
+if (!defined('OPENCC_BINARY')) {
     throw new RuntimeException(
         "Couldn't locate OpenCC.\n" .
         "Please check that OpenCC is installed and that it is located\n" .
@@ -33,11 +33,11 @@ if(!defined('OPENCC_BINARY')){
     );
 }
 
-$configPath = getenv('OPENCC_CONFIG')?:'';
-if($configPath && !is_dir($configPath)){
+$configPath = getenv('OPENCC_CONFIG') ?: '';
+if ($configPath && !is_dir($configPath)) {
     throw new RuntimeException(
         "OpenCC config folder doesn't exist:\n%s",
         $configPath
     );
 }
-define('OPENCC_CONFIG',$configPath);
+define('OPENCC_CONFIG', $configPath);

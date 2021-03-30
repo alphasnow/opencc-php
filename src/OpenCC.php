@@ -43,13 +43,13 @@ class OpenCC
      */
     public function convert($word, $config = null)
     {
-        if(!is_null($config)){
+        if (!is_null($config)) {
             $this->command->config($config);
         }
 
         $filesystem = Manager::create();
-        $tmpInput = $filesystem->createTemporaryFile('opencc','_input','txt');
-        $tmpOutput = $filesystem->createTemporaryFile('opencc','_out','txt');
+        $tmpInput = $filesystem->createTemporaryFile('opencc', '_input', 'txt');
+        $tmpOutput = $filesystem->createTemporaryFile('opencc', '_out', 'txt');
         file_put_contents($tmpInput, $word);
 
         $this->command->input($tmpInput)->output($tmpOutput);
@@ -60,5 +60,4 @@ class OpenCC
 
         return $outputData;
     }
-
 }

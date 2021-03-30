@@ -26,7 +26,7 @@ class ServiceProvider extends BaseServiceProvider
         // class
         $this->app->singleton(Command::class, function ($app) {
             $config = $app->get('config')->get('opencc');
-            return new Command($config['binary_path'],$config['config_path']);
+            return new Command($config['binary_path'], $config['config_path']);
         });
 
         $this->app->singleton(OpenCC::class, function ($app) {
@@ -34,8 +34,8 @@ class ServiceProvider extends BaseServiceProvider
         });
 
         // alias
-        $this->app->alias(OpenCC::class,'opencc');
-        $this->app->alias(Command::class,'opencc.command');
+        $this->app->alias(OpenCC::class, 'opencc');
+        $this->app->alias(Command::class, 'opencc.command');
     }
 
     private function getConfigFile(): string

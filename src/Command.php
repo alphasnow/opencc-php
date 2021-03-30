@@ -25,15 +25,15 @@ class Command
      */
     protected $configPath;
     /**
-     * @var string
+     * @var string|null
      */
     protected $inputFile;
     /**
-     * @var string
+     * @var string|null
      */
     protected $outputFile;
     /**
-     * @var string
+     * @var string|null
      */
     protected $configFile;
 
@@ -88,9 +88,15 @@ class Command
             return $this->process;
         }
         $process = new Process('');
-        if (!is_null($this->processConfig['env'])) $process->setEnv($this->processConfig['env']);
-        if (!is_null($this->processConfig['cwd'])) $process->setWorkingDirectory($this->processConfig['cwd']);
-        if (!is_null($this->processConfig['timeout'])) $process->setTimeout($this->processConfig['timeout']);
+        if (!is_null($this->processConfig['env'])) {
+            $process->setEnv($this->processConfig['env']);
+        }
+        if (!is_null($this->processConfig['cwd'])) {
+            $process->setWorkingDirectory($this->processConfig['cwd']);
+        }
+        if (!is_null($this->processConfig['timeout'])) {
+            $process->setTimeout($this->processConfig['timeout']);
+        }
         return $process;
     }
 
@@ -198,13 +204,6 @@ class Command
      */
     public function output($outputFile)
     {
-        if (!is_file($outputFile)) {
-            throw new InvalidArgumentException(sprintf(
-                'The input file (%s) is not exist.',
-                $outputFile
-            ));
-        }
-
         $this->outputFile = $this->cleanPath($outputFile);
         return $this;
     }
