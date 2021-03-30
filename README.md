@@ -1,9 +1,8 @@
 # opencc-php
 ## 介绍
-[![Latest Stable Version](https://poser.pugx.org/alphasnow/opencc-php/v/stable)](https://packagist.org/packages/alphasnow/opencc-php)
-[![Total Downloads](https://poser.pugx.org/alphasnow/opencc-php/downloads)](https://packagist.org/packages/alphasnow/opencc-php)
-[![License](https://poser.pugx.org/alphasnow/opencc-php/license)](https://packagist.org/packages/alphasnow/opencc-php)
-[![Latest Unstable Version](https://poser.pugx.org/alphasnow/opencc-php/v/unstable)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/alphasnow/opencc-php.svg?style=flat-square)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/alphasnow/opencc-php.svg?style=flat-square)](https://packagist.org/packages/alphasnow/opencc-php)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 中文简繁转换开源项目，支持词汇级别的转换、异体字转换和地区习惯用词转换（中国大陆、臺湾、香港）。  
 
