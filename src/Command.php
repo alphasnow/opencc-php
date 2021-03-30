@@ -87,7 +87,7 @@ class Command
         if ($this->process) {
             return $this->process;
         }
-        $process = new Process('');
+        $process = new Process([]);
         if (!is_null($this->processConfig['env'])) {
             $process->setEnv($this->processConfig['env']);
         }
