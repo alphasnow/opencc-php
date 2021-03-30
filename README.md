@@ -52,14 +52,14 @@ composer require alaphasnow/opencc-php
         'config_path'=> env('OPENCC_CONFIG', '/usr/share/opencc'),
     ];
     ```
-   或配置文件 `.env`
+   或修改环境配置 `.env`
    ```
    OPENCC_BINARY=/usr/bin/opencc
    OPENCC_CONFIG=/usr/share/opencc
    ```
 
 ## 快速使用
-#### Laravel 应用
+#### Laravel应用
 ```php
 // laravel应用可用外观
 $result = \OpenCC::convert('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。','t2s.json');
@@ -72,9 +72,11 @@ print_r($result);
 ```php
 use AlaphaSnow\OpenCC\Command;
 use AlaphaSnow\OpenCC\OpenCC;
+
 $command = new Command('/usr/bin/opencc','/usr/share/opencc');
 $opencc = new OpenCC($command);
 $result = $opencc->convert('天氣乍涼人寂寞，光陰須得酒消磨。且來花裏聽笙歌。','t2s.json');
+
 print_r($result);
 // 天气乍凉人寂寞，光阴须得酒消磨。且来花里听笙歌。
 ```
@@ -96,7 +98,7 @@ print_r($result);
 - tw2t.json Traditional Chinese (Taiwan standard) to Traditional Chinese 臺灣正體到繁體（OpenCC 標準）
 
 ## 备注说明
-- 如需PHP扩展,可使用[opencc4php](https://github.com/nauxliu/opencc4php)
+- 如需PHP原生扩展, 可使用 [opencc4php](https://github.com/nauxliu/opencc4php)
 
 ## License
 See [LICENSE](LICENSE).
