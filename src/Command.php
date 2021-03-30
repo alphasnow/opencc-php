@@ -244,14 +244,14 @@ class Command
     {
         $configFile = $this->configFile;
 
-        // check root path
-        if (strpos('$' . $configFile, '/')) {
-            return $configFile;
-        }
-
         // check suffix
         if (!strrpos($configFile, '.json')) {
             $configFile .= '.json';
+        }
+
+        // check root path
+        if (strpos('$' . $configFile, '/')) {
+            return $configFile;
         }
 
         // check config path
