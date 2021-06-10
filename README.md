@@ -21,7 +21,8 @@
     ```
 
 ## 应用配置
-#### Laravel应用
+
+### Laravel应用
 1. (Laravel5.5+ 忽略)在 `config/app.php` 注册 ServiceProvider 和 Facade 
     ```php
     [
@@ -55,8 +56,10 @@
    OPENCC_BINARY=/usr/bin/opencc
    OPENCC_CONFIG=/usr/share/opencc
    ```
+
 ## 快速使用
-#### Laravel应用
+
+### Laravel应用
 ```php
 // laravel应用可用外观
 // 参数1:待转换内容, 参数2:预设配置(可省略.json)
@@ -69,7 +72,7 @@ print_r($traditional);
 // 四面垂楊十里荷。問云何處最花多。畫樓南畔夕陽和。
 ```
 
-#### 其他应用
+### 其他应用
 ```php
 use AlphaSnow\OpenCC\Command;
 use AlphaSnow\OpenCC\OpenCC;
