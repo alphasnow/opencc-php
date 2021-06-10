@@ -60,6 +60,7 @@
 ## 快速使用
 
 ### Laravel应用
+
 ```php
 // laravel应用可用外观
 // 参数1:待转换内容, 参数2:预设配置(可省略.json)
@@ -73,6 +74,7 @@ print_r($traditional);
 ```
 
 ### 其他应用
+
 ```php
 use AlphaSnow\OpenCC\Command;
 use AlphaSnow\OpenCC\OpenCC;
