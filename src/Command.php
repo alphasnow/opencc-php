@@ -268,7 +268,7 @@ class Command
     public function run()
     {
         $commands = $this->getCommand();
-        $process = $this->getProcess()->setCommandLine($commands);
+        $process = $this->getProcess()->fromShellCommandline($commands);
 
         $output = $error = '';
 
